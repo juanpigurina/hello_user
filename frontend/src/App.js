@@ -5,26 +5,28 @@ function App() {
   const [name, setName] = useState('');
   const [greeting, setGreeting] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post('/api/greet', { name });
+      const response = await axios.post('http://localhost:5000/api/greet', { name });
       setGreeting(response.data.greeting);
     } catch (error) {
-      console.error('There was an error!', error);
+      console.error(error);
     }
   };
 
   return (
     <div>
+      <h1>What's your name?</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <button type="submit">Submit</button>
       </form>
-      {greeting && <p>{greeting}</p>}
+      {greeting && <h2>{greeting}</h2>}
     </div>
   );
 }
