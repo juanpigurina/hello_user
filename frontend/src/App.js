@@ -3,31 +3,28 @@ import axios from 'axios';
 
 function App() {
   const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
+  const [greeting, setGreeting] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('/.netlify/functions/hello/greet', { name });
-      setMessage(response.data.greeting);
+      const response = await axios.post('/api/greet', { name });
+      setGreeting(response.data.greeting);
     } catch (error) {
-      console.error('Error:', error);
-      setMessage('Something went wrong.');
+      console.error('There was an error!', error);
     }
   };
 
   return (
     <div>
-      <h1>Enter your name</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <label>
+          Name:
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        </label>
         <button type="submit">Submit</button>
       </form>
-      {message && <h2>{message}</h2>}
+      {greeting && <p>{greeting}</p>}
     </div>
   );
 }

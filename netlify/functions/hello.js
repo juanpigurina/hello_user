@@ -1,28 +1,18 @@
-exports.handler = async (event) => {
-  try {
-    const { name } = JSON.parse(event.body);
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: `Hello, ${name}!` }),
-    };
-  } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: 'Internal Server Error' }),
-    };
+const express = require('express');
+const serverless = require('serverless-http');
+const cors = require('cors');
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.post('/api/greet', (req, res) => {
+  const { name } = req.body;
+  if (name) {
+    res.json({ greeting: `Hello ${name}!` });
+  } else {
+    res.status(400).json({ error: 'Name is required' });
   }
-};
-exports.handler = async (event) => {
-  try {
-    const { name } = JSON.parse(event.body);
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: `Hello, ${name}!` }),
-    };
-  } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: 'Internal Server Error' }),
-    };
-  }
-};
+});
+
+module.exports.handler = serverless(app);
