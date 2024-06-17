@@ -8,8 +8,8 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('/.netlify/functions/hello', { name });
-      setMessage(response.data.message);
+      const response = await axios.post('/.netlify/functions/hello/greet', { name });
+      setMessage(response.data.greeting);
     } catch (error) {
       console.error('Error:', error);
       setMessage('Something went wrong.');
