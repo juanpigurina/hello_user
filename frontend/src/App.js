@@ -1,37 +1,33 @@
 import React, { useState } from 'react';
-import './App.css';
 import axios from 'axios';
 
 function App() {
   const [name, setName] = useState('');
-  const [greeting, setGreeting] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleInputChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleButtonClick = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/greet', { name });
-      setGreeting(response.data.greeting);
+      const response = await axios.post('/.netlify/functions/hello', { name });
+      setMessage(response.data.message);
     } catch (error) {
-      console.error('There was an error!', error);
+      console.error('Error:', error);
+      setMessage('Something went wrong.');
     }
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>What's your name?</h1>
-        <input 
-          type="text" 
-          placeholder="Enter your name" 
-          value={name} 
-          onChange={handleInputChange} 
+    <div>
+      <h1>Enter your name</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <button onClick={handleButtonClick}>Submit</button>
-        <h2>{greeting}</h2>
-      </header>
+        <button type="submit">Submit</button>
+      </form>
+      {message && <h2>{message}</h2>}
     </div>
   );
 }
