@@ -1,7 +1,7 @@
 [build]
   base = "frontend"
   publish = "build"
-  command = "npm run build --prefix frontend"
+  command = "npm install --prefix frontend && npm run build --prefix frontend"
 
 [[redirects]]
   from = "/*"
@@ -10,5 +10,6 @@
 
 [functions]
   directory = "netlify/functions"
+
 [build.environment]
-  NODE_VERSION = "20.14.0" 
+  NODE_VERSION = "20.14.0"
