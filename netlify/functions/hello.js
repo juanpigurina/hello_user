@@ -6,10 +6,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post('/api/greet', (req, res) => {
+app.post('/.netlify/functions/hello', (req, res) => {
   const { name } = req.body;
   if (name) {
-    res.json({ greeting: `Hello ${name}!` });
+    res.json({ greeting: `Hi ${name}!` });
   } else {
     res.status(400).json({ error: 'Name is required' });
   }
