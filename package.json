@@ -1,0 +1,14 @@
+{
+  "name": "hello_user_backend",
+  "version": "1.0.0",
+  "description": "Backend for Hello User app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build script defined for backend'"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "serverless-http": "^2.7.0"
+  }
+}
