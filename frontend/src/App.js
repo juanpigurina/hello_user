@@ -8,7 +8,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/greet', { name });
+      const response = await axios.post('/.netlify/functions/hello', { name });
       setGreeting(response.data.greeting);
     } catch (error) {
       console.error(error);
