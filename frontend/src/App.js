@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './styles.css';
 
 function App() {
   const [name, setName] = useState('');
@@ -16,13 +17,14 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>What's your name?</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
         />
         <button type="submit">Submit</button>
       </form>
