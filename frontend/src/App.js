@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Welcome to the Hello App</h1>
+        <h1>What's your name, hot sutff?</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
