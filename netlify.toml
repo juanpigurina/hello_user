@@ -1,5 +1,5 @@
 [build]
-base = "hello_user"
+base = ""
 publish = "frontend/build"
 command = "npm install --prefix frontend && npm run build --prefix frontend"
 
