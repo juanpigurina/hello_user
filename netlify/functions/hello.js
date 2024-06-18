@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post('/api/greet', (req, res) => {
+app.post('/.netlify/functions/hello', (req, res) => {
   const { name } = req.body;
   if (name) {
     res.json({ greeting: `Hey there ${name}, you lookin mighty fine today, Big Daddy!` });
